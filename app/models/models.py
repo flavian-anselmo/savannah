@@ -22,7 +22,7 @@ class Orders(Base):
     '''
     __tablename__ = 'orders'
     order_id = Column(Integer, primary_key=True, nullable=False)
-    customer_id = Column(Integer, ForeignKey('customers.customer_id'), nullable=False, ondelete ="CASCADE")
+    customer_id = Column(Integer, ForeignKey('customers.customer_id', ondelete ="CASCADE"), nullable=False)
     customer = relationship('Customers')
     quantity = Column(Integer, nullable = False)
     created_at =  Column (TIMESTAMP(timezone = True), nullable = False, server_default = text('now()'))
