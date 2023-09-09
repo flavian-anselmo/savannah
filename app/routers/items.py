@@ -4,6 +4,7 @@ from fastapi import status, Depends, HTTPException
 from app.schema import schema
 from app.database.database import get_db
 from app.models import models
+from app.oauth.oauth2 import get_current_user_logged_in
 from typing import List
 
 
@@ -13,7 +14,7 @@ router: APIRouter =  APIRouter(
 )
 
 @router.post('', status_code=status.HTTP_201_CREATED, response_model=schema.ItemResponse)
-def create_an_item(item:schema.ItemCreate, db:session =Depends(get_db)):
+def create_an_item(item:schema.ItemCreate, db:session =Depends(get_db),current_user = Depends(get_current_user_logged_in)):
     new_item = models.Items(**item.dict())
     db.add(new_item)
     db.commit()
@@ -21,7 +22,7 @@ def create_an_item(item:schema.ItemCreate, db:session =Depends(get_db)):
     return new_item
 
 @router.get('', status_code=status.HTTP_200_OK,response_model=List[schema.ItemResponse])
-def get_all_items(db:session =Depends(get_db)):
+def get_all_items(db:session =Depends(get_db),current_user = Depends(get_current_user_logged_in)):
     items = db.query(models.Items).all()
     if not items:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='no item found')
@@ -30,14 +31,14 @@ def get_all_items(db:session =Depends(get_db)):
 
     
 @router.get('/{item_id}', status_code=status.HTTP_200_OK, response_model=schema.ItemResponse)
-def get_one_item(item_id:int, db:session=Depends(get_db)):
+def get_one_item(item_id:int, db:session=Depends(get_db),current_user = Depends(get_current_user_logged_in)):
     item = db.query(models.Items).filter(models.Items.item_id == item_id).first()
     if not item:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='no item found')
     return item 
 
 @router.put('/{item_id}', status_code=status.HTTP_200_OK ,response_model=schema.ItemResponse)
-def update_an_item(item_id:int, item_update:schema.ItemCreate, db:session=Depends(get_db)):
+def update_an_item(item_id:int, item_update:schema.ItemCreate, db:session=Depends(get_db),current_user = Depends(get_current_user_logged_in)):
     item_query = db.query(models.Items).filter(models.Items.item_id == item_id)
     item = item_query.first()
     if not item:
@@ -48,7 +49,7 @@ def update_an_item(item_id:int, item_update:schema.ItemCreate, db:session=Depend
 
     
 @router.delete('/{item_id}', status_code=status.HTTP_200_OK, response_model=schema.ItemDeleteResponse)
-def delete_an_item(item_id:int, db:session=Depends(get_db), ):
+def delete_an_item(item_id:int, db:session=Depends(get_db), current_user = Depends(get_current_user_logged_in)):
     item_query = db.query(models.Items).filter(models.Items.item_id == item_id)
     if not item_query.first():
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='item does not exist')

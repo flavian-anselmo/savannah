@@ -18,3 +18,26 @@ class ItemDeleteResponse(BaseModel):
     message:str 
     class Config:
         orm_mode = True
+
+class TokenPayLoad(BaseModel):
+    customer_id:int
+class TokenResponse(BaseModel):
+    access_token:str
+    type:str
+
+
+class CustomerCreate(BaseModel):
+    customer_id:int 
+    customer_name: str
+    phone_no:str
+    password:str
+
+
+class CustomerResponse(BaseModel):
+    customer_id:int 
+    customer_name: str
+    phone_no:str
+    password:str
+    class Config:
+        orm_mode = True
+
