@@ -25,7 +25,7 @@ class Orders(Base):
     customer_id = Column(Integer, ForeignKey('customers.customer_id', ondelete ="CASCADE"), nullable=False)
     customer = relationship('Customers')
     item_id = Column(Integer, ForeignKey('items.item_id', ondelete ="CASCADE"), nullable=False)
-    item = relationship('items')
+    item = relationship('Items')
     quantity = Column(Integer, nullable = False)
     created_at =  Column (TIMESTAMP(timezone = True), nullable = False, server_default = text('now()'))
 
