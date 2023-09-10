@@ -1,4 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
+import re as regex 
 
 
 class ItemCreate(BaseModel):
@@ -30,6 +31,21 @@ class CustomerCreate(BaseModel):
     customer_name: str
     phone_no:str
     password:str
+
+    # validation 
+    @validator('password')
+    def validate_paswd(cls, password:str):
+        if len(password) < 8:
+            raise ValueError('password is weak')
+        
+    @validator('phone_no')
+    def validate_phone_no(cls, phone_no:str):
+        pattern = r'^\+254\d{9}$'
+        if regex.match(pattern, phone_no):
+            return 'ok'
+        raise ValueError('phone number should start with +254 format')
+        
+    
 
 
 class CustomerResponse(BaseModel):
