@@ -3,9 +3,7 @@ version: '3.3'
 services:
 
   backend: 
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: savannahregistry.azurecr.io/savannah.test:latest
     depends_on:
       - postgres
     volumes:
