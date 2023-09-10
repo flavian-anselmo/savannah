@@ -1,6 +1,6 @@
 from pydantic import BaseModel, validator
 import re as regex 
-
+from datetime import datetime
 
 class ItemCreate(BaseModel):
     item_name:str
@@ -45,13 +45,22 @@ class CustomerCreate(BaseModel):
             return 'ok'
         raise ValueError('phone number should start with +254 format')
         
-    
-
-
 class CustomerResponse(BaseModel):
     customer_id:int 
     customer_name: str
     phone_no:str
+    class Config:
+        orm_mode = True
+
+class OrdersCreate(BaseModel):
+    item_id:int
+    quantity:int
+
+class OrdersResponse(BaseModel):
+    order_id:int 
+    created_at: datetime
+    customer: CustomerResponse
+    item: ItemResponse
     class Config:
         orm_mode = True
 

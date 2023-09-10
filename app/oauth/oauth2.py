@@ -50,4 +50,4 @@ def get_current_user_logged_in(db:session = Depends(get_db), access_token:str = 
     )
     token = verify_access_token(token = access_token, credential_exceptions = credential_exception)
     user = db.query(models.Customers).filter(models.Customers.customer_id  == token.customer_id).first()
-    return user 
+    return user
