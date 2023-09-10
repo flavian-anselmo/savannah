@@ -22,13 +22,11 @@ def create_access_token (payload:dict):
     expire_time = datetime.utcnow() + timedelta(minutes = ACCESS_TOKEN_EXPIRATION_TIME)
     print(expire_time)
     to_encode_payload.update({'exp':expire_time})
-
     encoded_jwt = jwt.encode(to_encode_payload, SECRET_KEY, ALGORITHM)
     return encoded_jwt 
 
 
 def verify_access_token(token:str, credential_exceptions):
-
     try:
         payload:dict = jwt.decode(token, SECRET_KEY, ALGORITHM)
         customer_id:int = payload.get('customer_id')
@@ -38,16 +36,13 @@ def verify_access_token(token:str, credential_exceptions):
         if customer_id is None:
             raise credential_exceptions
         token_data = schema.TokenPayLoad(customer_id = customer_id)   
-
         return token_data
-
     except JWTError:
         raise credential_exceptions    
 
 
 
 def get_current_user_logged_in(db:session = Depends(get_db), access_token:str = Depends(ooauth2_schema)):
-
     credential_exception = HTTPException(
         status_code = status.HTTP_401_UNAUTHORIZED,
         detail = "Not authenticated",

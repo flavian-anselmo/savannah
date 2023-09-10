@@ -2,3 +2,4 @@ assets
 .github
 __pycache__
 README.md
+.git*

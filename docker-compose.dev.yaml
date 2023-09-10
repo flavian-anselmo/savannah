@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+
+  backend: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - ./:/usr/src/app:rw
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000   --reload
+    ports:
+      - 8000:8000
+
+    environment:
+      - DATABASE_HOST=savannah.postgres.database.azure.com
+      - DATABASE_PASSWORD=savannahtest123/
+      - DATABASE_NAME=savannah-db
+      - DATABASE_USERNAME=anselmo
+      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      - ALGORITHM=HS256 
+  
+  postgres:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=savannahtest123/
+      - POSTGRES_DB=savannah-db
+    volumes:
+      - postgresql-db-volume:/var/lib/postgresql/data
+volumes:
+  postgresql-db-volume:
