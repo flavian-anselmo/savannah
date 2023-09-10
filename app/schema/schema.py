@@ -27,7 +27,6 @@ class TokenResponse(BaseModel):
 
 
 class CustomerCreate(BaseModel):
-    customer_id:int 
     customer_name: str
     phone_no:str
     password:str
@@ -37,7 +36,6 @@ class CustomerResponse(BaseModel):
     customer_id:int 
     customer_name: str
     phone_no:str
-    password:str
     class Config:
         orm_mode = True
 
