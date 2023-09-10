@@ -29,6 +29,6 @@ services:
       - POSTGRES_PASSWORD=savannahtest123/
       - POSTGRES_DB=savannah-db-prod
     volumes:
-      - postgresql-db-volume:/var/lib/postgresql/data
+      - postgresql-db-volume-prod:/var/lib/postgresql/data
 volumes:
-  postgresql-db-volume:
+  postgresql-db-volume-prod:
