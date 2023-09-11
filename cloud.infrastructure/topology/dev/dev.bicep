@@ -1,7 +1,7 @@
 param servicePlanName string = 'savannah-plan'
 param location string = 'eastus'
 // param appServiceName string = 'savannah-api'
-
+param sqlServerName string = 'savannah'
 param registryName string = 'savannahregistry'
 
 module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
@@ -30,3 +30,10 @@ module containerRegistry '../../Microsoft.ContainerRegistry/registries.bicep' = 
   }
 }
 
+module postgreSQLFlexibleServer '../../Microsoft.DBforPostgreSQL/flexibleServers.bicep' ={
+  name:'postgresServer'
+  params:{
+    location:location
+    sqlServerName:sqlServerName
+  }
+}
