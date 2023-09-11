@@ -12,6 +12,5 @@ resource servicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   }
   properties:{
     zoneRedundant:false
-    
   }
 }
