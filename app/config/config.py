@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     database_username: str 
     secret_key:str 
     algorithm:str 
+    twilio_account_sid:str
+    twilio_auth_token:str
     class Config:
         env_file = ".env"
 
