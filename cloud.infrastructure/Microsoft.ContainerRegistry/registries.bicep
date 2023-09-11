@@ -8,6 +8,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-12-01' =
     name:'Standard'
   }
   properties:{
+    adminUserEnabled:true
     policies:{
       quarantinePolicy:{
         status:'disabled'
