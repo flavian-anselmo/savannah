@@ -1,8 +1,10 @@
 param servicePlanName string = 'savannah-plan'
 param location string = 'eastus'
-// param appServiceName string = 'savannah-api'
 param sqlServerName string = 'savannah'
 param registryName string = 'savannahregistry'
+
+// param appServiceName string = 'savannah-api'
+
 
 module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
   name:'AppServicePlan'
