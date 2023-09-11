@@ -35,6 +35,6 @@ app.include_router(orders.router)
 
 
 
-@app.get("/")
+@app.get("/healthcheck")
 def read_root():
     return {"message": f"Health Check {app.version}"}
