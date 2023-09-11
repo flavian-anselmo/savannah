@@ -1,12 +1,8 @@
-param servicePlanName string = 'savannah-plan'
-param location string = 'eastus'
-param sqlServerName string = 'savannah'
-param registryName string = 'savannahregistry'
-param webHookName string = 'webappsavannahapi'
-
-
-// param appServiceName string = 'savannah-api'
-
+param servicePlanName string 
+param location string 
+param sqlServerName string 
+param registryName string 
+param webHookName string 
 
 module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
   name:'AppServicePlan'
@@ -15,16 +11,6 @@ module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
     servicePlanName: servicePlanName
   }
 }
-
-// module appService '../../Microsoft.Web/site/sites.bicep' = {
-//   name:'AppService'
-//   params:{
-//     location:location
-//     planName:servicePlanName
-//     siteName:appServiceName
-//   }
-// }
-
 
 module containerRegistry '../../Microsoft.ContainerRegistry/registries.bicep' = {
   name:'registry'
