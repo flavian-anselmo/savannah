@@ -10,18 +10,18 @@ class TwilioClient:
         self.auth_token = auth_token
     
 
-    def send_sms(self, sender_phone_no:str, reciever_phone_no:str, txt_message:str):
+    def send_sms(self, reciever_phone_no:str, txt_message:str):
         '''
         send the message via twilio
 
         '''
         twilio_client = Client(self.account_sid, self.auth_token)
+        sender_phone_no = '+12569603620'
         message = twilio_client.messages.create(
             from_ = sender_phone_no,
             body = txt_message,
             to = reciever_phone_no
         )
-
         return message.sid
 
 

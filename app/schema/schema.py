@@ -36,7 +36,7 @@ class CustomerCreate(BaseModel):
     @validator('password')
     def validate_paswd(cls, password:str):
         if len(password) < 8:
-            raise ValueError('password is weak')
+            raise ValueError('password is weak, it should be 8 characters and above')
         
     @validator('phone_no')
     def validate_phone_no(cls, phone_no:str):
@@ -53,8 +53,8 @@ class CustomerResponse(BaseModel):
         orm_mode = True
 
 class OrdersCreate(BaseModel):
-    item_id:int
     quantity:int
+
 
 class OrdersResponse(BaseModel):
     order_id:int 
@@ -63,4 +63,7 @@ class OrdersResponse(BaseModel):
     item: ItemResponse
     class Config:
         orm_mode = True
+
+class OrderResponseBeforeMsgSent(BaseModel):
+    message:str
 
