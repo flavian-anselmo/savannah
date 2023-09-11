@@ -16,7 +16,7 @@ resource webHookForContainerRegistry 'Microsoft.ContainerRegistry/registries/web
       'push'
     ]
     scope: ''
-    serviceUri: ''
+    serviceUri: 'https://$savannah-api:Wl6jqwlh17vEhGtvbozsNXrstZuephsuTELZHo2WnneSkdaKyzh7ewKtXTg3@savannah-api.scm.azurewebsites.net/api/registry/webhook'
     status: 'enabled'
   }
 }
