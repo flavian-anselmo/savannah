@@ -2,6 +2,8 @@ param servicePlanName string = 'savannah-plan'
 param location string = 'eastus'
 param sqlServerName string = 'savannah'
 param registryName string = 'savannahregistry'
+param webHookName string = 'webappsavannahapi'
+
 
 // param appServiceName string = 'savannah-api'
 
@@ -26,6 +28,9 @@ module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
 
 module containerRegistry '../../Microsoft.ContainerRegistry/registries.bicep' = {
   name:'registry'
+  dependsOn:[
+    servicePlan
+  ]
   params:{
     location:location
     registryName: registryName
@@ -37,5 +42,17 @@ module postgreSQLFlexibleServer '../../Microsoft.DBforPostgreSQL/flexibleServers
   params:{
     location:location
     sqlServerName:sqlServerName
+  }
+}
+
+module webHookForContainerRegistry '../../Microsoft.ContainerRegistry/registries/webhooks.bicep'= {
+  name:'webHook'
+  dependsOn:[
+    containerRegistry
+  ]
+  params:{
+    containerRegistryName: registryName
+    location:location
+    webHookName:webHookName
   }
 }
