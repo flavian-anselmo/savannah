@@ -37,10 +37,11 @@ async def make_an_order(item_id:int, background_task:BackgroundTasks, order:sche
     background_task.add_task(
         # BACKGROUND TASK FOR SMS 
         SmsTaks.send_sms_for_orders,
-        phone_no = current_user.phone_no
+        phone_no = current_user.phone_no,
+        customer_name = current_user.customer_name
     )
     return schema.OrderResponseBeforeMsgSent(
-        message='Confirmation message for your Order will be sent shortly'
+        message= f'Confirmation message for your Order will be sent shortly via {current_user.phone_no}'
     )
 
 @router.get('', status_code=status.HTTP_200_OK, response_model=List[schema.OrdersResponse])
