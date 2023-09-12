@@ -1,13 +1,14 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from fastapi import status
 
-test_client = TestClient(
+client = TestClient(
     app=app
 )
 
-def test_healthchecker():
-    response = test_client.get('/healthcheck')
-    assert response.status_code ==200
+def test_read_root():
+    response = client.get('/healthcheck')
+    assert response.status_code == status.HTTP_200_OK
     assert response.json() == {
         'message': f'Health Check {app.version}'
     }

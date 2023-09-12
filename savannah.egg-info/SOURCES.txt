@@ -1,6 +1,0 @@
-README.md
-setup.py
-savannah.egg-info/PKG-INFO
-savannah.egg-info/SOURCES.txt
-savannah.egg-info/dependency_links.txt
-savannah.egg-info/top_level.txt
