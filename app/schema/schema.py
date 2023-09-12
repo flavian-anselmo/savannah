@@ -42,7 +42,7 @@ class CustomerCreate(BaseModel):
     def validate_phone_no(cls, phone_no:str):
         pattern = r'^\+254\d{9}$'
         if regex.match(pattern, phone_no):
-            return 'ok'
+            return phone_no
         raise ValueError('phone number should start with +254 format')
         
 class CustomerResponse(BaseModel):

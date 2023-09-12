@@ -15,27 +15,24 @@ router = APIRouter(
 
 
 
-@router.post('/sign-in', response_model = schema.TokenResponse)
+@router.post('/sign-in',status_code=status.HTTP_200_OK, response_model = schema.TokenResponse)
 def sign_in(customer_creds: OAuth2PasswordRequestForm = Depends(), db:session = Depends(get_db)):
-    try:
-        customer = db.query(models.Customers).filter(models.Customers.customer_name == customer_creds.username).first()
+    customer = db.query(models.Customers).filter(models.Customers.customer_name == customer_creds.username).first()
 
-        if not customer:
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Invalid credentials')
+    if not customer:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User Does not exist')
         
-        if not auth_utils.verify_password(customer_creds.password, customer.password):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Invalid credentials')
+    if not auth_utils.verify_password(customer_creds.password, customer.password):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Invalid credentials ')
 
-        access_token = oauth2.create_access_token(payload = {"customer_id": customer.customer_id})
-        return schema.TokenResponse(access_token = access_token, type = "Bearer") 
-    except Exception as err:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
+    access_token = oauth2.create_access_token(payload = {"customer_id": customer.customer_id})
+    return schema.TokenResponse(access_token = access_token, type = "Bearer") 
 
     
 
 @router.post('/sign-up', status_code=status.HTTP_201_CREATED, response_model=schema.CustomerResponse)    
 def sign_up(customer:schema.CustomerCreate,db:session=Depends(get_db)):
-    hash_password  = auth_utils.get_hashed_password(customer.password)
+    hash_password  = auth_utils.get_hashed_password(str(customer.password))
     customer.password = hash_password
     customer_phone_check = db.query(models.Customers).filter(models.Customers.phone_no == customer.phone_no).first()
     if customer_phone_check:

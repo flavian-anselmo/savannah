@@ -8,7 +8,8 @@ def  get_hashed_password(password:str) -> str:
     takes plain password and returns the hashed version 
     
     '''
-    return password_conxt.hash(password)
+    hash = password_conxt.hash(password)
+    return str(hash)
 
 def verify_password(password:str, hashed_password:str)-> bool:
     '''
