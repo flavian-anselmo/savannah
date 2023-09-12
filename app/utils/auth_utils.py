@@ -10,7 +10,7 @@ def  get_hashed_password(password:str) -> str:
     '''
     return password_conxt.hash(password)
 
-def verify_password(password:str, hashed_password:str)-> str:
+def verify_password(password:str, hashed_password:str)-> bool:
     '''
     confirms if the hash and the pswd match 
     
