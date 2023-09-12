@@ -1,8 +1,5 @@
 from app.utils.auth_utils import get_hashed_password, verify_password, password_conxt
 
-
-
-
 def test_get_hashed_password_and_verify_func():
     password = '12345678'
 
