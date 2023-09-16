@@ -21,7 +21,7 @@ def get_db():
     database dependancy for any endpont making a query to the db 
     
     '''
-    db = SessionLocal()
+    db:sessionmaker = SessionLocal()
     try:
         yield db 
 
