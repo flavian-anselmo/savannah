@@ -58,6 +58,7 @@ class OrdersCreate(BaseModel):
 
 class OrdersResponse(BaseModel):
     order_id:int 
+    quantity:int
     created_at: datetime
     customer: CustomerResponse
     item: ItemResponse

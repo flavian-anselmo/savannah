@@ -118,3 +118,24 @@ def create_multiple_test_items(create_test_user, session):
     items = session.query(models.Items).all()
     return items 
 
+@pytest.fixture
+def create_multiple_orders(create_test_user, create_multiple_test_items, session):
+    order_data = [
+        {
+            'customer_id':1,
+            'quantity':2,
+            'item_id':2,
+        },
+        {    'customer_id':1,
+            'quantity':1,
+            'item_id':3
+        }
+    ]
+    def create_order_model(order):
+        return models.Orders(**order)
+    order_map = map(create_order_model, order_data)
+    orders = list(order_map)
+    session.add_all(orders)
+    session.commit()
+    orders = session.query(models.Orders).all()
+    return orders 
