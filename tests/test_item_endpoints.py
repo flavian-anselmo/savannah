@@ -48,6 +48,19 @@ def test_get_one_item_not_found(authorized_client):
     )
     assert res.json()['detail'] == 'no item found'
     assert res.status_code == status.HTTP_404_NOT_FOUND
+
+
+def test_delete_item(authorized_client, create_a_test_item):
+    res = authorized_client.delete(
+        'items/1'
+    )
+    assert res.status_code == status.HTTP_204_NO_CONTENT
+def test_delete_item_does_not_exist(authorized_client, create_a_test_item):
+    res = authorized_client.delete(
+        'items/6'
+    )
+    assert res.status_code == status.HTTP_404_NOT_FOUND
+
 def test_unauthorized_user_get_all_posts(client):
     res = client.get(
         '/items'
@@ -58,22 +71,7 @@ def test_unauthorized_get_one_item(client):
     res = client.get('/items/1')
     assert res.status_code == status.HTTP_401_UNAUTHORIZED
     
-@pytest.mark.skip()
-def test_update_item(authorized_client, create_a_test_item):
-    res = authorized_client.put(
-        '/item/1',
-        json={
-            'item_id':1,
-            'item_name':'test_item_update',
-            'item_stock':9,
-            'price':50.0
-        }
-    )
-    update = schema.ItemResponse(
-        **res.json()
-    )
-    assert update.item_name =='test_item_update'
-    assert res.status_code == status.HTTP_201_CREATED
+
 
 
 
