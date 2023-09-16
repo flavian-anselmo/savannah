@@ -50,7 +50,7 @@ def create_test_user(client):
     user_data = {
         "customer_id": 1,
         "customer_name": "test_user",
-        "phone_no": "+254798071520",
+        "phone_no": "+254798071510",
         "password": "12345678"
     }
     res = client.post(

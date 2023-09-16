@@ -17,7 +17,7 @@ router: APIRouter =  APIRouter(
     tags = ['Customer Orders']
 )
 
-@router.post('{item_id}', status_code=status.HTTP_201_CREATED, response_model=schema.OrderResponseBeforeMsgSent)
+@router.post('/{item_id}', status_code=status.HTTP_201_CREATED, response_model=schema.OrderResponseBeforeMsgSent)
 async def make_an_order(item_id:int, background_task:BackgroundTasks, order:schema.OrdersCreate,  db:session=Depends(get_db), current_user = Depends(get_current_user_logged_in)):
     try:
         new_order = models.Orders(
