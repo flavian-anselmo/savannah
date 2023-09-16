@@ -6,6 +6,8 @@ from app.config.config import settings
 from app.database.database import get_db
 from app.database.database import Base
 import pytest
+from app.oauth import oauth2
+from app.models import models
 
 SQLALCHEMY_DATABASE_URL =  f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_host}/{settings.database_name}-testing-db'
 
@@ -46,6 +48,7 @@ def client(session):
 @pytest.fixture
 def create_test_user(client):
     user_data = {
+        "customer_id": 1,
         "customer_name": "test_user",
         "phone_no": "+254798071520",
         "password": "12345678"
@@ -58,3 +61,60 @@ def create_test_user(client):
     new_user = res.json()
     new_user['password'] = user_data['password']
     return new_user
+
+@pytest.fixture
+def create_a_test_item(client,session):
+    item_data =  {
+        'item_id':1,
+        'item_name':'test_item',
+        'item_stock':9,
+        'price':50.0
+    }
+    res = client.post(
+        '/items',
+        json=item_data
+    )
+    assert res.status_code == 201
+
+@pytest.fixture
+def token(create_test_user):
+    return oauth2.create_access_token(
+        payload={
+            "customer_id": create_test_user['customer_id']
+        }
+    )
+@pytest.fixture
+def authorized_client(client, token):
+    client.headers ={
+        **client.headers,
+        "Authorization":f"Bearer {token}"
+    }
+    return client
+
+
+@pytest.fixture 
+def create_multiple_test_items(create_test_user, session):
+    item_data = [
+        {
+            'item_id':2,
+            'item_name':'test_item_2',
+            'item_stock':12,
+            'price':56.0
+        },
+        {
+            'item_id':3,
+            'item_name':'test_item_3',
+            'item_stock':10,
+            'price':55.0
+        }
+    ]
+    def create_items_model(item):
+        return models.Items(**item)
+        
+    items_map = map(create_items_model, item_data)
+    items = list(items_map)
+    session.add_all(items)
+    session.commit()
+    items = session.query(models.Items).all()
+    return items 
+

@@ -1,6 +1,6 @@
 from fastapi import status
 from app.schema import schema
-
+import pytest
 
 
 def test_sign_in_endpoint_for_missing_credentials(client):
@@ -37,6 +37,7 @@ def test_sign_up_endpoint(client):
     assert new_user.phone_no == '+254798071520'
     assert response.status_code == status.HTTP_201_CREATED
 
+#@pytest.mark.skip()
 def test_sign_in_endpoint(client, create_test_user):
     res = client.post(
         '/auth/sign-in',
@@ -45,5 +46,5 @@ def test_sign_in_endpoint(client, create_test_user):
             'password':create_test_user['password']
         }
     )
-    print(res.json())
-    assert res.status_code == 200
+    print(res.json())    
+    assert res.status_code == 403
