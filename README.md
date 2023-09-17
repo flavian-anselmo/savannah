@@ -10,7 +10,12 @@ Backend Engineer (Junior) Test
 
 # Cloud Infrastructure  & Deployment 
 ![deployment](assets/cloud_infra.png)
-
+## Resources 
+- Azure Container Registry 
+- App Service 
+- App service plan 
+- PostgreSQL Flexible Server 
+- Web Hook For Registry 
 # DataBase Schema 
 ![deployment](assets/database_erd.png)
 
