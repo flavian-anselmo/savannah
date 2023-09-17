@@ -37,6 +37,28 @@ uvicorn app.main:app --reload
 docker-compose -f docker-compose.dev.yaml up --build 
 ```
 
+# Tools & Technologies 
+## lanuages and Frameworks 
+- Python 
+- FastApi 
+
+## Database migration 
+- Alembic 
+
+## Testing 
+- pytest 
+- FatsApi TestClient 
+
+## Code Coverage Check 
+- coverage 
+
+## Database 
+- PostgreSQL
+## Containerization 
+- Docker 
+- Docker Compose 
+## Cloud Deployment 
+- Microsoft Azure 
 
 
 
