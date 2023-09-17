@@ -12,10 +12,16 @@ Backend Engineer (Junior) Test
 ![deployment](assets/cloud_infra.png)
 ## Resources 
 - Azure Container Registry 
+Azure Container Registry is a private registry service for building, storing, and managing container images and related artifacts. In this quickstart, you create an Azure container registry instance with the Azure portal. 
 - App Service 
-- App service plan 
-- PostgreSQL Flexible Server 
-- Web Hook For Registry 
+Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends. You can develop in your favorite language. (used python)
+- App Service Plan 
+An app service always runs in an App Service plan
+- PostgreSQL Flexible Server
+Provides a managed PostgreSQL server that allows you to focus on using PostgreSQL, instead of focusing on managing your database server
+- Web Hook (For Registry)
+Used to trigger an automatic docker image pull once there is a new image push to container registry (ACR). It contributes to the aspect of CI/CD 
+
 # DataBase Schema 
 ![deployment](assets/database_erd.png)
 
