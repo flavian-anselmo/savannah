@@ -1,8 +1,8 @@
-param servicePlanName string = 'savannah-plan'
-param location string = 'eastus'
-param sqlServerName string ='savannah'
-param registryName string ='savannahregistry'
-param webHookName string ='webappsavannahapi'
+param servicePlanName string 
+param location string 
+param sqlServerName string
+param registryName string 
+param webHookName string 
 
 module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
   name:'AppServicePlan'
