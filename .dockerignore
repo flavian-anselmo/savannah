@@ -3,7 +3,7 @@ assets
 __pycache__
 README.md
 .git*
-cloud.infrastructure
+infra.as.code
 .testing.env
 diagram.as.code
 .pytest_cache
