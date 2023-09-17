@@ -48,6 +48,23 @@ uvicorn app.main:app --reload
 docker-compose -f docker-compose.dev.yaml up --build 
 ```
 
+# Run Tests 
+```bash 
+pytest tests/ -v 
+
+```
+# check Code Coverage 
+```bash 
+coverage run -m pytest
+
+coverage report 
+
+```
+## sample report 
+![deployment](assets/coverage.png)
+
+
+
 # Tools & Technologies 
 ## lanuages and Frameworks 
 - [FastApi (Python)](https://fastapi.tiangolo.com/) 
