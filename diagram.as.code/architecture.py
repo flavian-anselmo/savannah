@@ -7,7 +7,7 @@ from diagrams.c4 import Container
 from diagrams.azure.general import Resourcegroups
 from diagrams.onprem.vcs import Git, Github
 from diagrams.onprem.ci import GithubActions
-
+from diagrams.azure.general import Usericon
 
 
 with Diagram('assets/cloud_infra', show=False):
@@ -16,7 +16,7 @@ with Diagram('assets/cloud_infra', show=False):
     '''
     with Cluster('Resource.Group (savannah.test)'):
         resource_group = Resourcegroups('Resource.Group')
-        with Cluster('Web') as web:
+        with Cluster('Web'):
             app_service =[
                 
                 AppServices('app.service') >> AppServicePlans('app.service.plan')
@@ -64,6 +64,11 @@ with Diagram('assets/cloud_infra', show=False):
             cloud >> resource_group
         git >> git_hub >> cloud
         git >> git_hub >> image
+    
+    with Cluster('client'):
+        url = Usericon('https://savannah-api.azurewebsites.net')
+        url >> app_service
+
 
 
 
