@@ -7,3 +7,4 @@ infra.as.code
 .testing.env
 diagram.as.code
 .pytest_cache
+tests
