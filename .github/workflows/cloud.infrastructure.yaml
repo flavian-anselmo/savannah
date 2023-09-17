@@ -30,6 +30,7 @@ jobs:
           parameters: ./infra.as.code/topology/dev/params.dev.json
 
   build_and_deploy:
+    needs: deploy_cloud_infrastructure
     name: Buld Docker Image and Deploy 
     runs-on: ubuntu-latest
     steps:
@@ -44,6 +45,7 @@ jobs:
           push: true
           tags: ${{secrets.ACR_LOGIN_SERVER}}/${{env.DOCKER_IMAGE_NAME}}:${{env.TAG}}
           file: Dockerfile 
+    
     
       
 
