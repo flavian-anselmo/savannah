@@ -4,7 +4,6 @@ on: push
 
 env:
   AZURE_RESOURCEGROUP_NAME: Savannah.Test
-  ENVIRONMENT: dev
 
 permissions:
   id-token: write
@@ -25,6 +24,6 @@ jobs:
           deploymentName: ${{github.run_number}}
           resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
           template: ./infra.as.code/topology/dev/dev.bicep
-          parameters: environmentType=${{ env.ENVIRONMENT }}
+          parameters: ./infra.as.code/topology/dev/dev.params.json
 
 
