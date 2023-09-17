@@ -24,7 +24,7 @@ jobs:
         with: 
           deploymentName: ${{github.run_number}}
           resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-          template: ./cloud/topology/dev/dev.bicep
+          template: ./infra.as.code/topology/dev/dev.bicep
           parameters: environmentType=${{ env.ENVIRONMENT }}
 
 
