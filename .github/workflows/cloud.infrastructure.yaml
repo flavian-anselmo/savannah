@@ -47,6 +47,7 @@ jobs:
           file: Dockerfile 
   
   testing:
+    needs: build_and_deploy
     name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
@@ -72,7 +73,6 @@ jobs:
           coverage report 
 
   diagrams:
-    needs: testing
     name: Update Architecture Image
     runs-on: ubuntu-latest
     steps:
