@@ -63,6 +63,10 @@ The pytest framework makes it easy to write small, readable tests, and can scale
 - [coverage](https://coverage.readthedocs.io/en/7.3.1/)
 Coverage measurement is typically used to gauge the effectiveness of tests. It can show which parts of your code are being exercised by tests, and which are not.
 
+## CI/CD 
+- [GithubAction](https://github.com/features/actions)
+GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management.
+
 
 
 
