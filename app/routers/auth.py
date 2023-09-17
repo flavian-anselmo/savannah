@@ -22,7 +22,7 @@ def sign_in(customer_creds: OAuth2PasswordRequestForm = Depends(), db:session = 
     if not customer:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User Does not exist')
         
-    if not auth_utils.verify_password(str(customer_creds.password), str(customer.password)):
+    if not auth_utils.verify_password(customer_creds.password, customer.password):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail='Invalid Password ')
 
     access_token = oauth2.create_access_token(payload = {"customer_id": customer.customer_id})

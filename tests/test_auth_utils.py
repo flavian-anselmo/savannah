@@ -10,8 +10,8 @@ def test_get_hashed_password_and_verify_func():
 
     verfy_1 = verify_password(password, hash_1)
     verfy_2 = verify_password(password, hash_2)
-    assert verfy_1 == True
-    assert verfy_2 == True
+    assert verfy_1 == (True,  None)
+    assert verfy_2 == (True, None)
 
 
 

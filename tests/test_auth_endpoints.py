@@ -37,7 +37,6 @@ def test_sign_up_endpoint(client):
     assert new_user.phone_no == '+254798071520'
     assert response.status_code == status.HTTP_201_CREATED
 
-#@pytest.mark.skip()
 def test_sign_in_endpoint(client, create_test_user):
     res = client.post(
         '/auth/sign-in',
@@ -47,4 +46,15 @@ def test_sign_in_endpoint(client, create_test_user):
         }
     )
     print(res.json())    
-    assert res.status_code == 403
+    assert res.status_code == status.HTTP_200_OK
+
+def test_sign_in_user_that_does_not_exist(client, create_test_user):
+    res = client.post(
+        '/auth/sign-in',
+        data = {
+            'username':'k',
+            'password':'1234567'
+        }
+    )
+    print(res.json())    
+    assert res.status_code == status.HTTP_404_NOT_FOUND
