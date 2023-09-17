@@ -6,3 +6,4 @@ README.md
 cloud.infrastructure
 .testing.env
 diagram.as.code
+.pytest_cache
