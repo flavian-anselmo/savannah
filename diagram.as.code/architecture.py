@@ -4,16 +4,25 @@ from diagrams.azure.web import AppServices, AppServicePlans
 from diagrams.azure.database import DatabaseForPostgresqlServers
 from diagrams.azure.database import SQLDatabases
 from diagrams.c4 import Container
+from diagrams.azure.general import Resourcegroups
+from diagrams.onprem.vcs import Git, Github
+from diagrams.onprem.ci import GithubActions
+
 
 
 with Diagram('assets/cloud_infra', show=False):
-    with Cluster('Resource.Group (savannah.test)') as resource_group:
+    '''
+    Cloud Infrastructure
+    '''
+    with Cluster('Resource.Group (savannah.test)'):
+        resource_group = Resourcegroups('Resource.Group')
         with Cluster('Web') as web:
             app_service =[
+                
                 AppServices('app.service') >> AppServicePlans('app.service.plan')
             ] 
     
-        with Cluster('PostgreSQL Flexible Server') as flexible_server:
+        with Cluster('PostgreSQL Flexible Server'):
             postgres_server = DatabaseForPostgresqlServers('Flexible.Server')
             with Cluster('Databases'):
                 databases = [
@@ -38,8 +47,27 @@ with Diagram('assets/cloud_infra', show=False):
         web_hook >> app_service
 
 
+    '''
+    Deployment Strategy
+    '''
+    with Cluster('Deployment'):
+        git = Git('git')
+        git_hub = Github('git.hub')
+        with Cluster('GithubActions'):
+            cloud = GithubActions('Cloud.Infra')
+            image = GithubActions('Image.Build')
+            actions = [
+                cloud,
+                image
+            ]
+            image >> azure_container_registry
+            cloud >> resource_group
+        git >> git_hub >> cloud
+        git >> git_hub >> image
 
-        
+
+
+
 
 
 
