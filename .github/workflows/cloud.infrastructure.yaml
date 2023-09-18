@@ -63,6 +63,7 @@ jobs:
           pip install -e .
       - name: Run Tests
         run: |
+          cd savannah
           pip install pytest 
           pytest -v 
       - name: Code Coverage
