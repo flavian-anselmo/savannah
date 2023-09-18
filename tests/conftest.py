@@ -1,6 +1,4 @@
 from fastapi.testclient import TestClient
-import sys
-sys.path.append('/home/runner/work/') 
 from app.main import app
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
