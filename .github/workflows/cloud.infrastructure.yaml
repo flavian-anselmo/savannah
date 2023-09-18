@@ -47,7 +47,7 @@ jobs:
           file: Dockerfile 
   
   testing:
-    needs: build_and_deploy
+    #needs: build_and_deploy
     name: Run Unit Tests
     runs-on: ubuntu-latest
     steps:
@@ -63,9 +63,8 @@ jobs:
           pip install -e .
       - name: Run Tests
         run: |
-          pytest test/ -v 
+          pytest tests/ -v 
       - name: Code Coverage
         run: |
           coverage run -m pytest
           coverage report 
-          
