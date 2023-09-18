@@ -63,7 +63,7 @@ jobs:
           pip install -e .
       - name: Run Tests
         run: |
-          pytest tests/ -v 
+          pytest -v 
       - name: Code Coverage
         run: |
           coverage run -m pytest
