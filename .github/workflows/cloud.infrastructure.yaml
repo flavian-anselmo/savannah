@@ -62,24 +62,10 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
       - name: Run Tests
-        uses: pavelzw/pytest-action@v2
-        with: 
-          verbose: false
-          emoji: false
-          job-summary: false  
-          report-title: 'Tests Report'
+        run: |
+          pytest test/ -v 
       - name: Code Coverage
         run: |
           coverage run -m pytest
           coverage report 
-
-  
-
-   
-
-
-    
-    
-      
-
-
+          
