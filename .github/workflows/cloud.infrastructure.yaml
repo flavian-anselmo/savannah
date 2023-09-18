@@ -63,6 +63,7 @@ jobs:
           pip install -e .
       - name: Run Tests
         run: |
+          cd ..
           cd savannah
           pip install pytest 
           pytest -v 
