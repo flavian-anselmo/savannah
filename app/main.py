@@ -23,6 +23,7 @@ app.add_middleware(
     allow_origins=[
         "*",
         'http://127.0.0.1:8000'
+        'https://savannah-api.azurewebsites.net'
     ],
     allow_credentials=True,
     allow_methods=["*"],
