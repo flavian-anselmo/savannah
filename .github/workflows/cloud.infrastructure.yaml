@@ -54,6 +54,8 @@ jobs:
   deploy_cloud_infrastructure:
     runs-on: ubuntu-latest
     needs: testing
+    environment:
+      name: 'Cloud'
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
