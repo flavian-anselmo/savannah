@@ -14,6 +14,7 @@ env:
   ALGORITHM: ${{secrets.ALGORITHM}}
   TWILIO_ACCOUNT_SID: ${{secrets.TWILIO_ACCOUNT_SID}}
   TWILIO_AUTH_TOKEN: ${{secrets.TWILIO_AUTH_TOKEN}}
+  URL: https://savannah-api.azurewebsites.net/docs
 
 permissions:
   id-token: write
@@ -23,6 +24,8 @@ jobs:
   testing:
     name: Run Unit Tests
     runs-on: ubuntu-latest
+    environment:
+      name: 'Testing'
     steps:
       - uses: actions/checkout@v2
       - name: setup python
@@ -68,6 +71,9 @@ jobs:
 
   build_and_deploy:
     needs: deploy_cloud_infrastructure
+    environment:
+      name: 'Production'
+      url: ${{env.URL}}
     name: Buld Docker Image and Deploy 
     runs-on: ubuntu-latest
     steps:
