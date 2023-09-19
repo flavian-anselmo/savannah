@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: testing
     environment:
-      name: 'Cloud'
+      name: 'Infrastructure'
     steps:
       - uses: actions/checkout@v3
       - uses: azure/login@v1
