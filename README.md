@@ -1,6 +1,5 @@
-# Savannah.Backend.Challenge 
+# Talk
 
-Backend Engineer (Junior) Test 
 # Read The Docs 
 ## Read Using Swagger (Read & Test)
 [https://savannah-api.azurewebsites.net/docs](https://savannah-api.azurewebsites.net/docs)
