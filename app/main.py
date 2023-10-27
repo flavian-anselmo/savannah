@@ -8,8 +8,8 @@ from app.routers import items, auth, orders
 Base.metadata.create_all(bind=engine)
 
 app:FastAPI = FastAPI(
-    title= "Savannah Informatics",
-    description="Interview Test",
+    title= "DevOps Nairobi Talk",
+    description="Bicep Your Way to Azure Bliss: Infra as Code, Infra as Fun!",
     version="0.0.1",
     license_info={
         "name": "Apache 2.0",
