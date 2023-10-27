@@ -1,6 +1,8 @@
 param webHookName string 
 param location string 
 param containerRegistryName string
+param serviceUri string 
+param action string 
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-12-01' existing = {
   name: containerRegistryName
@@ -13,10 +15,10 @@ resource webHookForContainerRegistry 'Microsoft.ContainerRegistry/registries/web
   parent: containerRegistry
   properties: {
     actions: [
-      'push'
+      action
     ]
     scope: ''
-    serviceUri: 'https://$savannah-api:Wl6jqwlh17vEhGtvbozsNXrstZuephsuTELZHo2WnneSkdaKyzh7ewKtXTg3@savannah-api.scm.azurewebsites.net/api/registry/webhook'
+    serviceUri: serviceUri
     status: 'enabled'
   }
 }

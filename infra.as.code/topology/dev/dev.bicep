@@ -3,6 +3,8 @@ param location string
 param sqlServerName string
 param registryName string 
 param webHookName string 
+param serviceUri string = 'https://$savannah-api:Wl6jqwlh17vEhGtvbozsNXrstZuephsuTELZHo2WnneSkdaKyzh7ewKtXTg3@savannah-api.scm.azurewebsites.net/api/registry/webhook'
+param action string = 'push'
 
 module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
   name:'AppServicePlan'
@@ -40,5 +42,7 @@ module webHookForContainerRegistry '../../Microsoft.ContainerRegistry/registries
     containerRegistryName: registryName
     location:location
     webHookName:webHookName
+    action:action
+    serviceUri:serviceUri
   }
 }
