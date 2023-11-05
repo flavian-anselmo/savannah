@@ -44,16 +44,16 @@ module postgreSQLFlexibleServer '../../Microsoft.DBforPostgreSQL/flexibleServers
   }
 }
 
-module webHookForContainerRegistry '../../Microsoft.ContainerRegistry/registries/webhooks.bicep'= {
-  name:'webHook'
-  dependsOn:[
-    containerRegistry
-  ]
-  params:{
-    containerRegistryName: registryName
-    location:location
-    webHookName:webHookName
-    action:action
-    serviceUri:serviceUri
-  }
-}
+// module webHookForContainerRegistry '../../Microsoft.ContainerRegistry/registries/webhooks.bicep'= {
+//   name:'webHook'
+//   dependsOn:[
+//     containerRegistry
+//   ]
+//   params:{
+//     containerRegistryName: registryName
+//     location:location
+//     webHookName:webHookName
+//     action:action
+//     serviceUri:serviceUri
+//   }
+// }
