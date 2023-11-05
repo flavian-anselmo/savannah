@@ -13,9 +13,6 @@
       },
       "registryName": {
         "value": "savannahregistry"
-      },
-      "webHookName": {
-        "value": "webappsavannahapi"
       }
     }
 }
