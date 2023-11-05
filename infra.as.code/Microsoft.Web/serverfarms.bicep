@@ -5,9 +5,9 @@ resource servicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name:servicePlanName
   kind:'linux'
   sku:{
-    name:'B1'
-    tier:'Basic'
-    family:'B'
+    name:'S1'
+    tier:'Standard'
+    family:'S'
     capacity:1
   }
   properties:{
