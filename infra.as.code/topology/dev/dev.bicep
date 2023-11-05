@@ -13,6 +13,14 @@ module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
     servicePlanName: servicePlanName
   }
 }
+module appservice '../../Microsoft.Web/site/sites.bicep' = {
+  name:'appService'
+  params:{
+    location:location
+    siteName:'savannah-api'
+    planName:servicePlanName
+  }
+}
 
 module containerRegistry '../../Microsoft.ContainerRegistry/registries.bicep' = {
   name:'registry'
