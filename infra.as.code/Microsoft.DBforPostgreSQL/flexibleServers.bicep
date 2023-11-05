@@ -10,7 +10,7 @@ resource  sqlFlexibleServer 'Microsoft.DBforPostgreSQL/flexibleServers@2021-06-0
   properties:{
     administratorLogin:'anselmo'
     administratorLoginPassword:'savannahtest123/'
-    version: '15.3'
+    version: '14'
     storage:{
       storageSizeGB:32
     }
