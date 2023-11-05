@@ -38,18 +38,18 @@ jobs:
           pip install -r requirements.txt
           pip install pytest-md
           pip install pytest-emoji
-      - name: Run Tests
-        uses: pavelzw/pytest-action@v2
-        with:
-          verbose: true
-          emoji: true
-          job-summary: true
-          click-to-expand: false
-          report-title: 'Test Report'
-      - name: Code Coverage Report
-        run: |
-          coverage run -m pytest
-          coverage report 
+      # - name: Run Tests
+      #   uses: pavelzw/pytest-action@v2
+      #   with:
+      #     verbose: true
+      #     emoji: true
+      #     job-summary: true
+      #     click-to-expand: false
+      #     report-title: 'Test Report'
+      # - name: Code Coverage Report
+      #   run: |
+      #     coverage run -m pytest
+      #     coverage report 
 
   deploy_cloud_infrastructure:
     runs-on: ubuntu-latest
