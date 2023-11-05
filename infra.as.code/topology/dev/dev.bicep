@@ -14,6 +14,9 @@ module servicePlan '../../Microsoft.Web/serverfarms.bicep' = {
   }
 }
 module appservice '../../Microsoft.Web/site/sites.bicep' = {
+  dependsOn:[
+    servicePlan
+  ]
   name:'appService'
   params:{
     location:location
