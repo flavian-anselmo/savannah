@@ -1,11 +1,12 @@
 param registryName string 
 param location string 
+param skuName string 
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
   name:registryName
   location:location
   sku:{
-    name:'Standard'
+    name:skuName
   }
   properties:{
     adminUserEnabled:true
